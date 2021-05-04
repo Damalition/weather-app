@@ -1,0 +1,58 @@
+body {
+  margin: 0 200px !important;
+}
+
+h4 {
+  padding: 25px 0;
+}
+button {
+  margin: 5px !important;
+}
+.next-week p {
+  font-size: 20px;
+}
+.container {
+  display: block;
+  margin: 70px auto !important;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 60px !important;
+}
+
+div.next-week {
+  padding: 0;
+}
+
+.flex-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+}
+.col {
+  text-align: center;
+}
+.form-inline {
+  text-align: left;
+  margin-bottom: 50px;
+}
+.place {
+  text-align: right;
+  margin-bottom: 50px;
+}
+.date-today {
+  margin-top: 100px;
+  padding: 15px 0;
+  text-align: left;
+}
+
+.weather-today {
+  margin-top: 40px;
+  padding: 15px 0;
+  text-align: right;
+  font-size: 50px;
+}
+
+.next-week {
+  padding: 10px 15px;
+}
