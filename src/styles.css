@@ -56,3 +56,7 @@ div.next-week {
 .next-week {
   padding: 10px 15px;
 }
+
+p.code {
+  text-align: right;
+}
