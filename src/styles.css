@@ -1,22 +1,22 @@
 body {
-  margin: 0 200px !important;
+  margin: 0 200px;
 }
 
 h4 {
   padding: 25px 0;
 }
 button {
-  margin: 5px !important;
+  margin: 5px;
 }
 .next-week p {
   font-size: 20px;
 }
 .container {
   display: block;
-  margin: 70px auto !important;
+  margin: 70px auto;
   border: 1px solid gray;
   border-radius: 3px;
-  padding: 60px !important;
+  padding: 60px;
 }
 
 div.next-week {
@@ -40,23 +40,23 @@ div.next-week {
   text-align: right;
   margin-bottom: 50px;
 }
-.date-today {
+#date-today {
   margin-top: 100px;
   padding: 15px 0;
   text-align: left;
 }
 
-.weather-today {
+#weather-today {
   margin-top: 40px;
   padding: 15px 0;
   text-align: right;
   font-size: 50px;
 }
 
-.next-week {
+#next-week {
   padding: 10px 15px;
 }
 
-p.code {
+#code {
   text-align: right;
 }
