@@ -1,70 +1,43 @@
-function showTemperature(response) {
-  let city = response.data.name;
-  let country = response.data.sys.country;
-  let temp = Math.round(response.data.main.temp);
-  let locationCity = document.querySelector("#city");
-  let locationCountry = document.querySelector("#country");
-  let temperature = document.querySelector("#temp");
-  locationCity.innerHTML = city;
-  locationCountry.innerHTML = country;
-  temperature.innerHTML = `${temp}° C`;
-}
+//// Celsius and Fahrenheit Conversion ////
 
-function changeCity(city) {
-  let apiKey = "2475b81063d9be2c73be8865397340ee";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showTemperature);
-}
-
-function submitCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  changeCity(city);
-}
-
-function searchPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "2475b81063d9be2c73be8865397340ee";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showTemperature);
-}
-
-function findCurrentPosition(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchPosition);
-}
-let searchBar = document.querySelector("form");
-searchBar.addEventListener("submit", submitCity);
-
-let currentPositionButton = document.querySelector("button#current");
-currentPositionButton.addEventListener("click", findCurrentPosition);
-changeCity("Montreal");
-
-//Celsius and Fahrenheit conversion
+// Convert Celsius to Fahrenheit
 
 function toFahrenheit(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelectorAll("#temp");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  celsiusButton.classList.remove("active");
+  fahrenheitButton.classList.add("active");
+
+  let temperatureElement = document.querySelector("#currentTemp");
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = `${fahrenheitTemperature} °F`;
 }
+
+// Convert Fahrenheit to Celsius
+
 function toCelsius(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelectorAll("#temp");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+  fahrenheitButton.classList.remove("active");
+  celsiusButton.classList.add("active");
+
+  let temperatureElement = document.querySelector("#currentTemp");
+  temperatureElement.innerHTML = `${celsiusTemperature} °C`;
 }
 
-////let fahrenheitLink = document.querySelector("fahrenheitButton");
-////fahrenheitLink.addEventListener("click", toFahrenheit);
+// Listen to Fahrenheit Button Request
 
-////let celsiusLink = document.querySelector("celsiusButton");
-////celsiusLink.addEventListener("click", toCelsius);
+let fahrenheitButton = document.querySelector("#fahrenheitButton");
+fahrenheitButton.addEventListener("click", toFahrenheit);
 
-//Date and time
+// Listen to Celsius Button Request
+
+let celsiusButton = document.querySelector("#celsiusButton");
+celsiusButton.addEventListener("click", toCelsius);
+
+let celsiusTemperature = null;
+
+//// Format Date and Time ////
+
+// Format Days
 
 let days = [
   "Sunday",
@@ -75,6 +48,9 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
+// Format Months
+
 let months = [
   "January",
   "February",
@@ -90,6 +66,8 @@ let months = [
   "December",
 ];
 
+// Get Today's Date and Current Time
+
 let now = new Date();
 let year = now.getFullYear();
 let month = months[now.getMonth()];
@@ -99,7 +77,93 @@ let hours = now.getHours();
 let minutes = now.getMinutes();
 let seconds = now.getSeconds();
 
+// If hours are less than 10, add 0
+
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+
+// If minutes are less than 10, add 0
+
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+
+// If seconds are less than 10, add 0
+
+if (seconds < 10) {
+  seconds = `0${seconds}`;
+}
+
+// Show Formatted Date and Time
+
 let h3Date = document.querySelector("#date");
 h3Date.innerHTML = `${day}, ${month} ${date}, ${year}`;
 let h3Time = document.querySelector("#time");
 h3Time.innerHTML = `${hours}:${minutes}:${seconds}`;
+
+//// Show Temperature and Location ////
+
+// Show City, Country and Temperature after Search
+
+function showTemperature(response) {
+  let city = response.data.name;
+  let country = response.data.sys.country;
+  let cityElement = document.querySelector("#city");
+  let countryElement = document.querySelector("#country");
+  cityElement.innerHTML = city;
+  countryElement.innerHTML = country;
+
+  celsiusTemperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#currentTemp");
+  temperatureElement.innerHTML = `${celsiusTemperature} °C`;
+}
+
+// Search City using API and then show Temperature and Location
+
+function changeCity(city) {
+  let apiKey = "2475b81063d9be2c73be8865397340ee";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+// Receive City Input
+
+function submitCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  changeCity(city);
+}
+
+// Listen to New Search Request
+
+let searchBar = document.querySelector("form");
+searchBar.addEventListener("submit", submitCity);
+
+//// Current Location and Temperature ////
+
+// Show Current Location and then Show Temperature
+
+function searchPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "2475b81063d9be2c73be8865397340ee";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+// Search Current Position and then Show Location
+
+function findCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchPosition);
+}
+
+// Listen to Current Position Request
+
+let currentPositionButton = document.querySelector("#current");
+currentPositionButton.addEventListener("click", findCurrentPosition);
+
+// Default Search on Load
+
+changeCity("Montreal");
