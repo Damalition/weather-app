@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SheCodes</title>
-    <link rel="stylesheet" href="src/styles.css" />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -15,6 +15,7 @@
       src="https://kit.fontawesome.com/65a8c38967.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
@@ -37,12 +38,17 @@
             <button id="current" type="button" class="btn btn-outline-primary">
               Current
             </button>
-            <button type="button" class="btn btn-outline-primary celsiusButton">
+            <button
+              id="celsiusButton"
+              type="button"
+              class="btn btn-outline-primary active"
+            >
               C
             </button>
             <button
+              id="fahrenheitButton"
               type="button"
-              class="btn btn-outline-primary fahrenheitButton"
+              class="btn btn-outline-primary"
             >
               F
             </button>
@@ -55,52 +61,52 @@
       </div>
       <div class="flex-container">
         <div class="search flex-child">
-          <div class="date-today">
+          <div id="date-today">
             <h3 id="time">Time</h3>
             <h3 id="date">Today</h3>
           </div>
         </div>
         <div class="search flex-child">
-          <div class="weather-today">
+          <div id="weather-today">
             <i class="fas fa-cloud-sun"></i>
-            <p id="temp">16° C</p>
+            <p id="currentTemp">16 °C</p>
           </div>
         </div>
       </div>
-      <div class="next-week">
+      <div id="next-week">
         <h4>Next week</h4>
         <div class="row">
           <div class="col">
             <p class="day">Monday</p>
-            <p id="temp">16° C</p>
+            <p class="temp">16° C</p>
             <i class="fas fa-cloud-sun"></i>
           </div>
           <div class="col">
             <p class="day">Tuesday</p>
-            <p id="temp">16° C</p>
+            <p class="temp">16° C</p>
             <i class="fas fa-cloud-sun"></i>
           </div>
           <div class="col">
             <p class="day">Wednesday</p>
-            <p id="temp">16° C</p>
+            <p class="temp">16° C</p>
             <i class="fas fa-cloud-showers-heavy"></i>
           </div>
           <div class="col">
             <p class="day">Thursday</p>
-            <p id="temp">16° C</p>
+            <p class="temp">16° C</p>
 
             <i class="fas fa-cloud-rain"></i>
           </div>
           <div class="col">
             <p class="day">Friday</p>
-            <p id="temp">16° C</p>
+            <p class="temp">16° C</p>
             <i class="fas fa-cloud-showers-heavy"></i>
           </div>
         </div>
       </div>
     </div>
-    <p class="code">
-      Opensource code by
+    <p id="code">
+      Open-source code by
       <a
         href="https://github.com/Damalition/weather-app"
         target="_blank"
