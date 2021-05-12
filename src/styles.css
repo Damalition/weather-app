@@ -12,10 +12,11 @@ button {
 .container {
   display: block;
   margin: 70px auto;
+  margin-bottom: 15px;
   border: 1px solid gray;
   border-radius: 3px;
   padding: 60px;
-  background-color: rgb(189, 189, 189);
+  background-color: rgb(224, 224, 224);
 }
 
 div#next-week {
@@ -45,23 +46,22 @@ div#next-week {
   text-align: left;
 }
 
-#weather-today,
-.icon {
+#weather-today {
   margin-top: 40px;
-  padding: 15px 0;
+  margin-bottom: 0;
   text-align: right;
 }
 
 #next-week {
   padding: 10px 15px;
-}
-#next-week p {
   font-size: 20px;
 }
 #code {
-  text-align: right;
+  text-align: left;
+  margin: 0 0 50px 140px;
 }
 #currentTemp {
+  margin: 0;
   font-size: 50px;
 }
 #description {
@@ -70,7 +70,8 @@ div#next-week {
 
 #description,
 #precipitation,
-#wind {
+#wind,
+#humidity {
   margin: 0;
   font-size: 15px;
 }

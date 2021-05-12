@@ -104,7 +104,7 @@ h3Time.innerHTML = `${hours}:${minutes}:${seconds}`;
 
 //// Show Temperature and Location ////
 
-// Show City, Country and Temperature after Search
+// Show City, Country, Temperature, Description, Windspeed, Humidity, Precipitation and Icon
 
 function showTemperature(response) {
   console.log(response.data);
@@ -130,6 +130,10 @@ function showTemperature(response) {
   let humidity = Math.round(response.data.main.humidity);
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `Humidity: ${humidity} %`;
+
+  let precipitation = Math.round(response.data.rain["1h"]);
+  let precipitationElement = document.querySelector("#precipitation");
+  precipitationElement.innerHTML = `Precipitation: ${precipitation} mm`;
 
   let icon = response.data.weather[0].icon;
   let iconElement = document.querySelector("#icon");
