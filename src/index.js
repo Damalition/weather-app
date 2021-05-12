@@ -107,6 +107,7 @@ h3Time.innerHTML = `${hours}:${minutes}:${seconds}`;
 // Show City, Country and Temperature after Search
 
 function showTemperature(response) {
+  console.log(response.data);
   let city = response.data.name;
   let country = response.data.sys.country;
   let cityElement = document.querySelector("#city");
@@ -117,6 +118,18 @@ function showTemperature(response) {
   celsiusTemperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#currentTemp");
   temperatureElement.innerHTML = `${celsiusTemperature} °C`;
+
+  let description = response.data.weather[0].description;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = description;
+
+  let wind = Math.round(response.data.wind.speed);
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `Windspeed: ${wind} km/h`;
+
+  let humidity = Math.round(response.data.main.humidity);
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `Humidity: ${humidity} %`;
 }
 
 // Search City using API and then show Temperature and Location
@@ -127,10 +140,13 @@ function changeCity(city) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-// Receive City Input
+// Receive City Input and Use Celsius as Default
 
 function submitCity(event) {
   event.preventDefault();
+  fahrenheitButton.classList.remove("active");
+  celsiusButton.classList.add("active");
+
   let city = document.querySelector("#city-input").value;
   changeCity(city);
 }
@@ -152,10 +168,13 @@ function searchPosition(position) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-// Search Current Position and then Show Location
+// Search Current Position and Use Celsius as Default
 
 function findCurrentPosition(event) {
   event.preventDefault();
+  fahrenheitButton.classList.remove("active");
+  celsiusButton.classList.add("active");
+
   navigator.geolocation.getCurrentPosition(searchPosition);
 }
 

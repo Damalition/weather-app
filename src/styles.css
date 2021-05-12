@@ -1,5 +1,5 @@
 body {
-  margin: 0 200px;
+  margin: 0 250px;
 }
 
 h4 {
@@ -8,9 +8,7 @@ h4 {
 button {
   margin: 5px;
 }
-.next-week p {
-  font-size: 20px;
-}
+
 .container {
   display: block;
   margin: 70px auto;
@@ -19,7 +17,7 @@ button {
   padding: 60px;
 }
 
-div.next-week {
+div#next-week {
   padding: 0;
 }
 
@@ -36,7 +34,7 @@ div.next-week {
   text-align: left;
   margin-bottom: 50px;
 }
-.place {
+#place {
   text-align: right;
   margin-bottom: 50px;
 }
@@ -46,17 +44,32 @@ div.next-week {
   text-align: left;
 }
 
-#weather-today {
+#weather-today,
+.icon {
   margin-top: 40px;
   padding: 15px 0;
   text-align: right;
-  font-size: 50px;
 }
 
 #next-week {
   padding: 10px 15px;
 }
-
+#next-week p {
+  font-size: 20px;
+}
 #code {
   text-align: right;
+}
+#currentTemp {
+  font-size: 50px;
+}
+#description {
+  text-transform: capitalize;
+}
+
+#description,
+#precipitation,
+#wind {
+  margin: 0;
+  font-size: 15px;
 }
