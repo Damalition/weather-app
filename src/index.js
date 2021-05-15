@@ -107,7 +107,6 @@ h3Time.innerHTML = `${hours}:${minutes}:${seconds}`;
 // Show City, Country, Temperature, Description, Windspeed, Humidity, Precipitation and Icon
 
 function showTemperature(response) {
-  console.log(response.data);
   let city = response.data.name;
   let country = response.data.sys.country;
   let cityElement = document.querySelector("#city");
@@ -131,10 +130,6 @@ function showTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `Humidity: ${humidity} %`;
 
-  let precipitation = Math.round(response.data.rain["1h"]);
-  let precipitationElement = document.querySelector("#precipitation");
-  precipitationElement.innerHTML = `Precipitation: ${precipitation} mm`;
-
   let icon = response.data.weather[0].icon;
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
@@ -142,6 +137,15 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
   iconElement.setAttribute("alt", description);
+
+  if (response.data.rain === undefined) {
+    let precipitationElement = document.querySelector("#precipitation");
+    precipitationElement.innerHTML = `Precipitation: 0 mm`;
+  } else {
+    let precipitation = Math.round(response.data.rain["1h"]);
+    let precipitationElement = document.querySelector("#precipitation");
+    precipitationElement.innerHTML = `Precipitation: ${precipitation} mm`;
+  }
 }
 
 // Search City using API and then show Temperature and Location
