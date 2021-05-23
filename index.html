@@ -11,10 +11,6 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/65a8c38967.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
@@ -67,51 +63,24 @@
         </div>
 
         <div class="row">
-          <span id="date-today" class="col-6">
+          <span id="date-today" class="col-8">
             <h3 id="time">Time</h3>
             <h3 id="date">Today</h3>
           </span>
-          <span id="weather-today" class="col-6">
-            <img id="icon" />
-            <p id="description">Description</p>
-            <p id="currentTemp">16 °C</p>
+          <span id="info-today" class="col-2">
             <p id="precipitation">Precipitation</p>
             <p id="humidity">Humidity</p>
             <p id="wind">Windspeed</p>
           </span>
+          <span id="weather-today" class="col-2">
+            <img id="icon" />
+            <p id="description">Description</p>
+            <p id="currentTemp">16 °C</p>
+          </span>
         </div>
       </div>
 
-      <div id="next-week">
-        <h4>Next week</h4>
-        <div class="row">
-          <span class="col">
-            <p class="day">Monday</p>
-            <p class="temp">16° C</p>
-            <i class="fas fa-cloud-sun"></i>
-          </span>
-          <span class="col">
-            <p class="day">Tuesday</p>
-            <p class="temp">16° C</p>
-            <i class="fas fa-cloud-sun"></i>
-          </span>
-          <span class="col">
-            <p class="day">Wednesday</p>
-            <p class="temp">16° C</p>
-            <i class="fas fa-cloud-showers-heavy"></i>
-          </span>
-          <span class="col">
-            <p class="day">Thursday</p>
-            <p class="temp">16° C</p>
-            <i class="fas fa-cloud-rain"></i>
-          </span>
-          <span class="col">
-            <p class="day">Friday</p>
-            <p class="temp">16° C</p>
-            <i class="fas fa-cloud-showers-heavy"></i>
-          </span>
-        </div>
-      </div>
+      <div id="next-week"></div>
     </div>
 
     <p id="code">

@@ -10,6 +10,8 @@ function toFahrenheit(event) {
   let temperatureElement = document.querySelector("#currentTemp");
   let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   temperatureElement.innerHTML = `${fahrenheitTemperature} °F`;
+
+  forecastToFahrenheit();
 }
 
 // Convert Fahrenheit to Celsius
@@ -146,6 +148,8 @@ function showTemperature(response) {
     let precipitationElement = document.querySelector("#precipitation");
     precipitationElement.innerHTML = `Precipitation: ${precipitation} mm`;
   }
+
+  getForecast(response.data.coord);
 }
 
 // Search City using API and then show Temperature and Location
@@ -199,67 +203,45 @@ function findCurrentPosition(event) {
 let currentPositionButton = document.querySelector("#current");
 currentPositionButton.addEventListener("click", findCurrentPosition);
 
-// Next Week's Forecast
+// Default Search on Load
 
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+changeCity("Montreal");
 
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[date.getDay()];
-  return `${day} ${hours}:${minutes}`;
-}
+//// Next Week's Forecast ////
+
+// Format Forecast Date
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
   return days[day];
 }
 
-function displayForecast(response) {
+// Show Forecast Min and Max Temperature
+function showForecast(response) {
   let forecast = response.data.daily;
-
   let forecastElement = document.querySelector("#next-week");
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    let forecastMaxTemp = Math.round(forecastDay.temp.max);
+    let forecastMinTemp = Math.round(forecastDay.temp.min);
+    let forecastIcon = forecastDay.weather[0].icon;
+
+    // Show next 5 days
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
-      <div class="col-2">
-        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+      <div class="col">
+        <div id="forecast-date">${formatDay(forecastDay.dt)}</div>
         <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDay.weather[0].icon
-          }@2x.png"
+          src="http://openweathermap.org/img/wn/${forecastIcon}@2x.png"
           alt=""
-          width="42"
         />
-        <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> ${Math.round(
-            forecastDay.temp.max
-          )}° </span>
-          <span class="weather-forecast-temperature-min"> ${Math.round(
-            forecastDay.temp.min
-          )}° </span>
+        <div id="forecast-temp">
+          <span id="forecast-max-temp"> ${forecastMaxTemp}° | </span>
+          <span id="forecast-min-temp"> ${forecastMinTemp}° </span>
         </div>
       </div>
   `;
@@ -271,10 +253,7 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiKey = "2475b81063d9be2c73be8865397340ee";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(showForecast);
 }
-
-// Default Search on Load
-changeCity("Montreal");
