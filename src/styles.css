@@ -1,11 +1,3 @@
-body {
-  margin: 0 250px;
-}
-
-h4 {
-  padding: 25px 0;
-}
-
 .container {
   display: block;
   margin: 70px auto;
@@ -16,16 +8,6 @@ h4 {
   background-color: rgb(224, 224, 224);
 }
 
-div#next-week {
-  padding: 0;
-}
-
-.flex-container {
-  display: flex;
-}
-.flex-child {
-  flex: 1;
-}
 .col {
   text-align: center;
 }
@@ -77,6 +59,7 @@ div#next-week {
   margin: 0;
   font-size: 15px;
 }
+
 #code {
-  text-align: right;
+  text-align: center;
 }

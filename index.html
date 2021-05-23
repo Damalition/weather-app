@@ -20,96 +20,100 @@
   </head>
   <body>
     <div class="container">
-      <div class="flex-container">
-        <div class="search flex-child">
-          <form class="form-inline">
-            <input
-              class="form-control mr-sm-2"
-              type="text"
-              placeholder="Search"
-              aria-label="Search"
-              id="city-input"
-              autocomplete="off"
-              autocapitalize="on"
-            />
-            <button id="search" type="submit" class="btn btn-outline-primary">
-              Search
-            </button>
-            <button id="current" type="button" class="btn btn-outline-primary">
-              Current
-            </button>
-            <lr />
-            <button
-              id="celsiusButton"
-              type="button"
-              class="btn btn-outline-primary active"
-            >
-              C
-            </button>
-            <button
-              id="fahrenheitButton"
-              type="button"
-              class="btn btn-outline-primary"
-            >
-              F
-            </button>
-          </form>
+      <div id="today">
+        <div class="row">
+          <span class="col-6">
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+                id="city-input"
+                autocomplete="off"
+                autocapitalize="on"
+              />
+              <button id="search" type="submit" class="btn btn-outline-primary">
+                Search
+              </button>
+              <button
+                id="current"
+                type="button"
+                class="btn btn-outline-primary"
+              >
+                Current
+              </button>
+
+              <button
+                id="celsiusButton"
+                type="button"
+                class="btn btn-outline-primary active"
+              >
+                C
+              </button>
+              <button
+                id="fahrenheitButton"
+                type="button"
+                class="btn btn-outline-primary"
+              >
+                F
+              </button>
+            </form>
+          </span>
+          <span id="place" class="col-6">
+            <h1 id="city">City</h1>
+            <h2 id="country">Country</h2>
+          </span>
         </div>
-        <div id="place" class="flex-child">
-          <h1 id="city">City</h1>
-          <h2 id="country">Country</h2>
-        </div>
-      </div>
-      <div class="flex-container">
-        <div class="search flex-child">
-          <div id="date-today">
+
+        <div class="row">
+          <span id="date-today" class="col-6">
             <h3 id="time">Time</h3>
             <h3 id="date">Today</h3>
-          </div>
-        </div>
-        <div class="search flex-child">
-          <div id="weather-today">
+          </span>
+          <span id="weather-today" class="col-6">
             <img id="icon" />
             <p id="description">Description</p>
             <p id="currentTemp">16 °C</p>
             <p id="precipitation">Precipitation</p>
             <p id="humidity">Humidity</p>
             <p id="wind">Windspeed</p>
-          </div>
+          </span>
         </div>
       </div>
+
       <div id="next-week">
         <h4>Next week</h4>
         <div class="row">
-          <div class="col">
+          <span class="col">
             <p class="day">Monday</p>
             <p class="temp">16° C</p>
             <i class="fas fa-cloud-sun"></i>
-          </div>
-          <div class="col">
+          </span>
+          <span class="col">
             <p class="day">Tuesday</p>
             <p class="temp">16° C</p>
             <i class="fas fa-cloud-sun"></i>
-          </div>
-          <div class="col">
+          </span>
+          <span class="col">
             <p class="day">Wednesday</p>
             <p class="temp">16° C</p>
             <i class="fas fa-cloud-showers-heavy"></i>
-          </div>
-          <div class="col">
+          </span>
+          <span class="col">
             <p class="day">Thursday</p>
             <p class="temp">16° C</p>
-
             <i class="fas fa-cloud-rain"></i>
-          </div>
-          <div class="col">
+          </span>
+          <span class="col">
             <p class="day">Friday</p>
             <p class="temp">16° C</p>
             <i class="fas fa-cloud-showers-heavy"></i>
-          </div>
+          </span>
         </div>
       </div>
     </div>
+
     <p id="code">
       Open-source code by
       <a
@@ -119,6 +123,7 @@
         >Kristine Damal</a
       >
     </p>
+
     <script src="src/index.js"></script>
   </body>
 </html>
